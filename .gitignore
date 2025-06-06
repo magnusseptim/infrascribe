@@ -1,0 +1,52 @@
+# Build artifacts
+
+bin/
+obj/
+
+# User-specific files
+
+\*.user
+\*.suo
+\*.userosscache
+\*.sln.docstates
+
+# Logs
+
+\*.log
+llm\_usage.log
+
+# VS Code
+
+.vscode/
+
+# Rider
+
+.idea/
+\*.sln.iml
+
+# Runtime artifacts
+
+infrastructure-doc.md
+
+# Dotnet
+
+project.lock.json
+project.fragment.lock.json
+artifacts/
+\*.deps.json
+\*.runtimeconfig.json
+
+# Others
+
+infrascribe.config.json
+\*.DS\_Store
+Thumbs.db
+
+# Ollama (if any local cache exists)
+
+.ollama/
+
+# Templates/output
+
+examples/output.md
+docs/

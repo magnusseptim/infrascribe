@@ -1,0 +1,53 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Multi-tier application with VPC, EC2, RDS, and S3.",
+  "Resources": {
+    "AppVPC": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsSupport": true,
+        "EnableDnsHostnames": true,
+        "Tags": [{ "Key": "Name", "Value": "AppVPC" }]
+      }
+    },
+    "AppSubnet": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "VpcId": { "Ref": "AppVPC" },
+        "CidrBlock": "10.0.1.0/24",
+        "AvailabilityZone": "us-east-1a",
+        "Tags": [{ "Key": "Name", "Value": "AppSubnet" }]
+      }
+    },
+    "AppEC2Instance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "InstanceType": "t3.micro",
+        "SubnetId": { "Ref": "AppSubnet" },
+        "ImageId": "ami-0abcdef1234567890",
+        "Tags": [{ "Key": "Name", "Value": "AppServer" }]
+      }
+    },
+    "AppS3Bucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "my-complex-app-bucket",
+        "VersioningConfiguration": { "Status": "Enabled" }
+      }
+    },
+    "AppRDSInstance": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "AllocatedStorage": "20",
+        "DBInstanceClass": "db.t2.micro",
+        "Engine": "mysql",
+        "MasterUsername": "admin",
+        "MasterUserPassword": "password1234",
+        "DBName": "AppDB",
+        "VpcSecurityGroups": [],
+        "PubliclyAccessible": true
+      }
+    }
+  }
+}
