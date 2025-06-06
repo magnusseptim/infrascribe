@@ -106,19 +106,24 @@ public class DocCommand : Command<DocCommand.Settings>
                 {
                     var resourceJson = string.Join("", group.Select(r => r.Value.ToJsonString()));
                     var summaryPrompt = $"Summarize precisely the purpose of the following AWS resources defined in a CloudFormation template." +
-                                        $"Avoid general AWS information. Be concise and list what these specific resources do. {resourceJson}";
+                                        $"Avoid general AWS information. Be concise and list what these specific resources do. {resourceJson}" +
+                                        $"Start with a sentence — not a numbered list";
                     
                     var summary = QueryOllama(summaryPrompt);
-                    sb.AppendLine($"**Summary:**{summary.Trim()} ");
+                    sb.AppendLine();
+                    sb.AppendLine(summary.Trim());
                     logWriter?.WriteLine("====================");
                     logWriter?.WriteLine($"🕒 Timestamp: {DateTime.Now}");
                     logWriter?.WriteLine($"🔍 Prompt:{summaryPrompt} ");
                     logWriter?.WriteLine($"💬 Response:{summary.Trim()} ");
                     logWriter?.WriteLine("====================");
-                    
-                    logWriter?.Flush();
-                    logWriter?.Close();
                 }
+            }
+
+            if (logWriter != null)
+            {
+                logWriter.Close();
+                logWriter.Dispose();
             }
 
             var outputPath = string.IsNullOrWhiteSpace(settings.OutputPath)
