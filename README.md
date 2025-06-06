@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="assets/logo.png" alt="InfraScribe Logo" width="300"/>
+</p>
+
+
 # 🛠️ InfraScribe CLI
 
 **CloudFormation/CDK Templates, Explained and Documented.**
@@ -78,7 +83,7 @@ Override via CLI flags if needed.
 
 ## 📁 Sample Template
 
-Check the `examples/` folder for example CloudFormation templates.
+Check the `Examples/` folder for example CloudFormation templates.
 
 ---
 
