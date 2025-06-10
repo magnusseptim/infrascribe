@@ -112,6 +112,6 @@ This must include:
 
 **Example attribution:**
 
-> This tool includes components from InfraScribe CLI by \[Your Name] – [https://github.com/magnusseptim/infrascribe](https://github.com/your-user/infrascribe)
+> This tool includes components from InfraScribe CLI by \[magnusseptim] – [https://github.com/magnusseptim/infrascribe](https://github.com/your-user/infrascribe)
 
 See [LICENSE](./License) for full terms.
