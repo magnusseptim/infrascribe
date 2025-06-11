@@ -1,3 +1,4 @@
+using System.Reflection;
 using InfraScribe.CLI.Commands;
 using InfraScribe.CLI.Utils;
 using Spectre.Console.Cli;
@@ -10,6 +11,13 @@ public static class Program
 
     public static int Main(string[] args)
     {
+        if (args.Length == 1 && (args[0] == "--version" || args[0] == "-v"))
+        {
+            var version = Assembly.GetEntryAssembly()?.GetName().Version?.ToString() ?? "Unknown";
+            Console.WriteLine($"InfraScribe CLI version {version}");
+            return 0;
+        }
+        
         var app = new CommandApp();
 
         app.Configure(config =>
@@ -24,6 +32,9 @@ public static class Program
 
             config.AddCommand<AskCommand>("ask")
                 .WithDescription("Ask questions about your infrastructure template.");
+            
+            config.AddCommand<VersionCommand>("version")
+                .WithDescription("Show CLI version information.");
         });
 
         return app.Run(args);

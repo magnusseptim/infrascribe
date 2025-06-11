@@ -1,0 +1,1738 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Large CloudFormation template with varied meaningful resources",
+  "Resources": {
+    "InstanceResource000": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource001": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource002": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource003": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "RoleResource004": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "TestLambdaRole"
+      }
+    },
+    "TopicResource005": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "TestTopic"
+      }
+    },
+    "QueueResource006": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "TestQueue"
+      }
+    },
+    "InstanceResource007": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource008": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource009": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource010": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "RoleResource011": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "TestLambdaRole"
+      }
+    },
+    "TopicResource012": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "TestTopic"
+      }
+    },
+    "QueueResource013": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "TestQueue"
+      }
+    },
+    "InstanceResource014": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource015": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource016": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource017": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "RoleResource018": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "TestLambdaRole"
+      }
+    },
+    "TopicResource019": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "TestTopic"
+      }
+    },
+    "QueueResource020": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "TestQueue"
+      }
+    },
+    "InstanceResource021": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource022": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource023": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource024": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "RoleResource025": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "TestLambdaRole"
+      }
+    },
+    "TopicResource026": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "TestTopic"
+      }
+    },
+    "QueueResource027": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "TestQueue"
+      }
+    },
+    "InstanceResource028": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource029": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource030": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource031": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "RoleResource032": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "TestLambdaRole"
+      }
+    },
+    "TopicResource033": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "TestTopic"
+      }
+    },
+    "QueueResource034": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "TestQueue"
+      }
+    },
+    "InstanceResource035": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource036": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource037": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource038": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "RoleResource039": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "TestLambdaRole"
+      }
+    },
+    "TopicResource040": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "TestTopic"
+      }
+    },
+    "QueueResource041": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "TestQueue"
+      }
+    },
+    "InstanceResource042": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource043": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource044": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource045": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "RoleResource046": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "TestLambdaRole"
+      }
+    },
+    "TopicResource047": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "TestTopic"
+      }
+    },
+    "QueueResource048": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "TestQueue"
+      }
+    },
+    "InstanceResource049": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource050": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource051": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource052": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "RoleResource053": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "TestLambdaRole"
+      }
+    },
+    "TopicResource054": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "TestTopic"
+      }
+    },
+    "QueueResource055": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "TestQueue"
+      }
+    },
+    "InstanceResource056": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource057": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource058": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource059": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "RoleResource060": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "TestLambdaRole"
+      }
+    },
+    "TopicResource061": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "TestTopic"
+      }
+    },
+    "QueueResource062": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "TestQueue"
+      }
+    },
+    "InstanceResource063": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource064": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource065": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource066": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "RoleResource067": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "TestLambdaRole"
+      }
+    },
+    "TopicResource068": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "TestTopic"
+      }
+    },
+    "QueueResource069": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "TestQueue"
+      }
+    },
+    "InstanceResource070": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource071": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource072": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource073": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "RoleResource074": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "TestLambdaRole"
+      }
+    },
+    "TopicResource075": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "TestTopic"
+      }
+    },
+    "QueueResource076": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "TestQueue"
+      }
+    },
+    "InstanceResource077": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource078": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource079": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource080": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "RoleResource081": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "TestLambdaRole"
+      }
+    },
+    "TopicResource082": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "TestTopic"
+      }
+    },
+    "QueueResource083": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "TestQueue"
+      }
+    },
+    "InstanceResource084": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource085": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource086": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource087": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "RoleResource088": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "TestLambdaRole"
+      }
+    },
+    "TopicResource089": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "TestTopic"
+      }
+    },
+    "QueueResource090": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "TestQueue"
+      }
+    },
+    "InstanceResource091": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource092": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource093": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource094": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "RoleResource095": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "TestLambdaRole"
+      }
+    },
+    "TopicResource096": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "TestTopic"
+      }
+    },
+    "QueueResource097": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "TestQueue"
+      }
+    },
+    "InstanceResource098": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource099": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource100": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource101": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "RoleResource102": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "TestLambdaRole"
+      }
+    },
+    "TopicResource103": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "TestTopic"
+      }
+    },
+    "QueueResource104": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "TestQueue"
+      }
+    },
+    "InstanceResource105": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource106": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource107": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource108": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "RoleResource109": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "TestLambdaRole"
+      }
+    },
+    "TopicResource110": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "TestTopic"
+      }
+    },
+    "QueueResource111": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "TestQueue"
+      }
+    },
+    "InstanceResource112": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource113": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource114": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource115": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "RoleResource116": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "TestLambdaRole"
+      }
+    },
+    "TopicResource117": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "TestTopic"
+      }
+    },
+    "QueueResource118": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "TestQueue"
+      }
+    },
+    "InstanceResource119": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource120": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource121": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource122": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "RoleResource123": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "TestLambdaRole"
+      }
+    },
+    "TopicResource124": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "TestTopic"
+      }
+    },
+    "QueueResource125": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "TestQueue"
+      }
+    },
+    "InstanceResource126": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0abcdef1234567890",
+        "InstanceType": "t3.micro",
+        "KeyName": "test-key",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestEC2Instance"
+          }
+        ]
+      }
+    },
+    "BucketResource127": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test-bucket-${AWS::Region}",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "FunctionResource128": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = function(event, ctx, cb) { return cb(null, 'hi'); };"
+        },
+        "Runtime": "nodejs14.x"
+      }
+    },
+    "TableResource129": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "TestTable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    }
+  }
+}

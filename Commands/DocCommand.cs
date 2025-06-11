@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json.Nodes;
+using System.Text.RegularExpressions;
 using InfraScribe.CLI.Resolvers;
 using InfraScribe.CLI.Utils;
 using Spectre.Console.Cli;
@@ -83,7 +84,9 @@ public class DocCommand : Command<DocCommand.Settings>
 
             var sb = new StringBuilder();
             sb.AppendLine("# Infrastructure Documentation");
+            sb.AppendLine();
             sb.AppendLine("## Resources");
+            sb.AppendLine();
 
             StreamWriter? logWriter = null;
             string? logPath = null;
@@ -96,26 +99,36 @@ public class DocCommand : Command<DocCommand.Settings>
 
             foreach (var group in groupedResources)
             {
-                sb.AppendLine($"### {group.Key}");
+                // Header with resource type and count
+                var count = group.Count();
+                sb.AppendLine($"### {group.Key} ({count} resource{(count > 1 ? "s" : "")})");
+                sb.AppendLine();
+
+                // Bullet list, tight to the header
                 foreach (var resource in group)
                 {
                     sb.AppendLine($"- **{resource.Key}**");
                 }
+                sb.AppendLine();
 
+                // Optional: LLM summary for each group
                 if (config.EnableLLMSummary)
                 {
                     var resourceJson = string.Join("", group.Select(r => r.Value.ToJsonString()));
-                    var summaryPrompt = $"Summarize precisely the purpose of the following AWS resources defined in a CloudFormation template." +
-                                        $"Avoid general AWS information. Be concise and list what these specific resources do. {resourceJson}" +
-                                        $"Start with a sentence — not a numbered list";
+                    var summaryPrompt =
+                        $"Summarize the specific purpose and configuration of each AWS resource, avoiding boilerplate like 'This AWS resource is ...'." +
+                        $"Just describe what is unique and relevant. {resourceJson} Keep it concise." +
+                        $"If resources are similar, summarize what they have in common and only mention differences. " +
+                        $"Flag any obvious security concerns. ";
                     
-                    var summary = QueryOllama(summaryPrompt);
+                    var summary = QueryOllama(summaryPrompt).Trim();
+                    sb.AppendLine(summary);
                     sb.AppendLine();
-                    sb.AppendLine(summary.Trim());
+
                     logWriter?.WriteLine("====================");
                     logWriter?.WriteLine($"🕒 Timestamp: {DateTime.Now}");
                     logWriter?.WriteLine($"🔍 Prompt:{summaryPrompt} ");
-                    logWriter?.WriteLine($"💬 Response:{summary.Trim()} ");
+                    logWriter?.WriteLine($"💬 Response:{summary} ");
                     logWriter?.WriteLine("====================");
                 }
             }
@@ -129,7 +142,12 @@ public class DocCommand : Command<DocCommand.Settings>
             var outputPath = string.IsNullOrWhiteSpace(settings.OutputPath)
                 ? Path.Combine(config.OutputDirectory, "infrastructure-doc.md")
                 : settings.OutputPath;
-            File.WriteAllText(outputPath, sb.ToString());
+            
+            
+            var markdown = sb.ToString();
+            markdown = Regex.Replace(markdown, @"(\r?\n){3,}", "\n\n");
+            
+            File.WriteAllText(outputPath, markdown);
             Console.WriteLine($"Documentation written to {outputPath}");
             if (config.EnableLLMSummary && logPath != null)
                 Console.WriteLine($"LLM usage logged to {logPath}");

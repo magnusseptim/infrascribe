@@ -22,6 +22,9 @@ public class AskCommand : Command<AskCommand.Settings>
 
     public override int Execute(CommandContext context, Settings settings)
     {
+        Console.WriteLine($"Looking for file at: {settings.TemplatePath}");
+        Console.WriteLine($"Current working directory: {Directory.GetCurrentDirectory()}");
+        
         if (!File.Exists(settings.TemplatePath))
         {
             Console.WriteLine("Template file not found.");
