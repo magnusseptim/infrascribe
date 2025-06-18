@@ -32,6 +32,9 @@ public static class Program
 
             config.AddCommand<AskCommand>("ask")
                 .WithDescription("Ask questions about your infrastructure template.");
+
+            config.AddCommand<McpServerCommand>("mcp")
+                .WithDescription("Run the MCP server for tool metadata and execution.");
             
             config.AddCommand<VersionCommand>("version")
                 .WithDescription("Show CLI version information.");

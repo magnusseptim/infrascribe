@@ -9,6 +9,8 @@ using YamlDotNet.Serialization.NamingConventions;
 
 public class AskCommand : Command<AskCommand.Settings>
 {
+    public static Action<string>? GlobalOnAnswer;
+
     public class Settings : CommandSettings
     {
         [CommandArgument(0, "<file>")]
@@ -19,15 +21,15 @@ public class AskCommand : Command<AskCommand.Settings>
         [Description("Your question about the infrastructure.")]
         public string Question { get; set; }
     }
-
+    
     public override int Execute(CommandContext context, Settings settings)
     {
         Console.WriteLine($"Looking for file at: {settings.TemplatePath}");
         Console.WriteLine($"Current working directory: {Directory.GetCurrentDirectory()}");
-        
-        if (!File.Exists(settings.TemplatePath))
+
+        if (string.IsNullOrWhiteSpace(settings.TemplatePath) || string.IsNullOrWhiteSpace(settings.Question))
         {
-            Console.WriteLine("Template file not found.");
+            Console.WriteLine("Both template path and question are required.");
             return 1;
         }
 
@@ -61,7 +63,7 @@ public class AskCommand : Command<AskCommand.Settings>
         }
 
         var contextPrompt = $"Here is an AWS CloudFormation/CDK template in JSON format:{doc}Question: {settings.Question}";
-        
+
         Console.Write("Thinking");
         for (int i = 0; i < 3; i++) { Thread.Sleep(500); Console.Write("."); }
         Console.WriteLine();
@@ -75,6 +77,9 @@ public class AskCommand : Command<AskCommand.Settings>
             Thread.Sleep(8);
         }
         Console.WriteLine();
+
+        GlobalOnAnswer?.Invoke(answer.Trim());
+
         return 0;
     }
 

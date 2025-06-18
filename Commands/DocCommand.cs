@@ -15,8 +15,11 @@ namespace InfraScribe.CLI.Commands;
 
 public class DocCommand : Command<DocCommand.Settings>
 {
+    public static Action<IDictionary<string, string>>? GlobalOnMarkdown;
+
     public class Settings : CommandSettings
     {
+
         [CommandArgument(0, "<file>")]
         [Description("Path to the CloudFormation/CDK template (JSON or YAML).")]
         public string TemplatePath { get; set; }
@@ -28,6 +31,11 @@ public class DocCommand : Command<DocCommand.Settings>
         [CommandOption("--no-llm")]
         [Description("Disable LLM summary generation for this run.")]
         public bool NoLLM { get; set; }
+
+        [CommandOption("--no-files")]
+        [Description("Do not write any files, return markdown as result (for MCP server).")]
+        public bool NoFiles { get; set; }
+
     }
 
     public override int Execute(CommandContext context, Settings settings)
@@ -146,11 +154,25 @@ public class DocCommand : Command<DocCommand.Settings>
             
             var markdown = sb.ToString();
             markdown = Regex.Replace(markdown, @"(\r?\n){3,}", "\n\n");
-            
-            File.WriteAllText(outputPath, markdown);
-            Console.WriteLine($"Documentation written to {outputPath}");
-            if (config.EnableLLMSummary && logPath != null)
-                Console.WriteLine($"LLM usage logged to {logPath}");
+
+            if (settings.NoFiles && GlobalOnMarkdown != null)
+            {
+                // Return markdown inline as result
+                var result = new Dictionary<string, string>
+                {
+                    { "infrastructure-doc.md", markdown }
+                };
+                GlobalOnMarkdown(result);
+                Console.WriteLine("Documentation returned as inline result (no files written).");
+            }
+            else
+            {
+                File.WriteAllText(outputPath, markdown);
+                Console.WriteLine($"Documentation written to {outputPath}");
+                if (config.EnableLLMSummary && logPath != null)
+                    Console.WriteLine($"LLM usage logged to {logPath}");
+            }
+
         }
         catch (Exception ex)
         {
