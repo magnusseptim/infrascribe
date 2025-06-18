@@ -28,3 +28,17 @@ internal sealed record RunRequest
     [JsonPropertyName("args")]
     public JsonElement Args { get; init; }
 }
+
+
+// -------------------------------------------------
+// MCP Server Results
+// -------------------------------------------------
+internal sealed record DocResult(
+    bool Success,
+    string[]? OutputFiles = null,
+    string? Error = null,
+    IDictionary<string, string>? outputMarkdown = null);
+internal sealed record AskResult(
+    bool Success,
+    string? Answer = null,
+    string? Error = null);

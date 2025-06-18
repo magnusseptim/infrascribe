@@ -27,6 +27,9 @@ public sealed class McpServerCommand : AsyncCommand<McpServerCommand.Settings>
 
         var app = builder.Build();
 
+        // /health endpoint
+        app.MapGet("/health", () => Results.Ok(new { status = "ok" }));
+
         // /tools endpoint
         app.MapGet("/mcp/v1/tools", (HttpContext ctx) =>
         {
